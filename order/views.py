@@ -15,7 +15,7 @@ from .serializer import TodoSerializer, TimingTodoSerializer, UserSerializer
 
 class TodoApiView(APIView):
     """
-    Basic Authentication
+    JWT Authentication
     """
     # authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
