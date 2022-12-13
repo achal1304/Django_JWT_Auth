@@ -18,7 +18,7 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=150, unique=True)
 
     class Meta:
-        ordering = ('name')
+        ordering = ('name',)
 
     def __str__(self):
         return self.name
@@ -42,7 +42,7 @@ class Robot(models.Model):
         related_name = 'robot',
         on_delete = models.CASCADE
     )
-    currency = models.Choices(
+    currency = models.CharField(
         max_length = 3,
         choices = CURRENCY_CHOICES,
         default = 'INR'
@@ -51,7 +51,7 @@ class Robot(models.Model):
     price = models.IntegerField(default=0, validators=[MinValueValidator(1)])
 
     class Meta:
-        ordering = ('name')
+        ordering = ('name',)
 
     def __str__(self):
         return self.name

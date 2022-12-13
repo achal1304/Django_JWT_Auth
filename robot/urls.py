@@ -15,11 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from robot import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    # path('login/',include('users.urls')),
-    # path('todo/',include('order.urls')),
-    # path('cart/', include('cart.urls')),
-    # path('robot/',include('robot.urls'))
+    path('robocategory/',
+         views.RobotCategoryList.as_view(),
+         name='robotcategory-list'),
+    path('robocategory/<int:pk>/',
+         views.RobotCategoryDetail.as_view(),
+         name='robotcategory-detail'),
+    path('manufacturer/',
+         views.ManufacturerList.as_view(),
+         name='manufacturer-list'),
+    path('manufacturer/<int:pk>/',
+         views.ManufacturerDetail.as_view(),
+         name='manufacturer-detail'),
+    path('robot/',
+         views.RobotList.as_view(),
+         name='robot-list'),
+    path('robot/<int:pk>/',
+         views.RobotDetail.as_view(),
+         name='robot-detail'),
+    path('',
+        views.ApiRoot.as_view(),
+        name=views.ApiRoot.name)
 ]

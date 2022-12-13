@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'order',
-    'cart'
+    'cart',
+    'robot'
 ]
 
 REST_FRAMEWORK = {

@@ -1,34 +1,34 @@
 from rest_framework import serializers
 from .models import Robot, RobotCategory, Manufacturer
 
-class RobotCategorySerializer(serializers.HyperLinkedModelSerialzer):
-    robots = serializers.HyperLinkedRelatedField(
+class RobotCategorySerializer(serializers.HyperlinkedModelSerializer):
+    robot = serializers.HyperlinkedRelatedField(
         many = True,
         read_only = True,
-        view_name = 'robot-details'
+        view_name = 'robot-detail'
     )
 
     class Meta:
         model = RobotCategory
         fields = '__all__'
     
-class ManufacturerSerializer(serializers.HyperLinkedModelSerializer):
-    robots = serializers.HyperLinkedRelatedField(
+class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
+    robot = serializers.HyperlinkedRelatedField(
         many = True,
         read_only = True,
-        view_name = 'manufacturer_detail'
+        view_name = 'robot-detail'
     )
     class Meta:
         model = Manufacturer
         fields = '__all__'
 
-class RobotSerializer(serializers.HyperLinkedModelSerialzer):
+class RobotSerializer(serializers.HyperlinkedModelSerializer):
     robot_category = serializers.SlugRelatedField(
-        query_set = RobotCategory.objects.all(),
+        queryset = RobotCategory.objects.all(),
         slug_field = 'name'
     )
     manufacturer = serializers.SlugRelatedField(
-        query_set = Manufacturer.objects.all(),
+        queryset = Manufacturer.objects.all(),
         slug_field = 'name'
     )
     currency = serializers.ChoiceField(
