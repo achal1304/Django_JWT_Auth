@@ -16,6 +16,9 @@ class Todo(BaseModel):
     description = models.TextField()
     isdone = models.BooleanField(default = False)
 
+    def get_description(self):
+        return self.task + ' ' + self.description + ' ' + str(self.isdone)
+
 class TimingTodo(BaseModel):
     todo = models.ForeignKey(Todo, on_delete=models.CASCADE)
     timing = models.DateField()

@@ -35,7 +35,7 @@ class RobotSerializer(serializers.HyperlinkedModelSerializer):
         choices = Robot.CURRENCY_CHOICES
     )
     currency_name = serializers.CharField(
-        source = 'get_currency_display',
+        source = 'get_currency',
         read_only = True
     )
 

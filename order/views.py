@@ -22,14 +22,7 @@ class TodoApiView(APIView):
 
     def get(self, request):
         result = Todo.objects.all()
-        serializer = TodoSerializer(data=result, many=True)
-        if serializer.is_valid():
-            return Response(
-                {
-                    'status': True,
-                    'data': serializer.data,
-                }
-            )
+        serializer = TodoSerializer(result, many=True)
         return Response(
             {
                 'status': True,
@@ -47,12 +40,14 @@ class TodoApiView(APIView):
                     {
                         'status': True,
                         'data': serializer.data,
-                    }
+                    },
+                    status = status.HTTP_201_CREATED
                 )
             return Response({
                 'status': False,
                 'data': serializer.errors,
-            })
+            },
+            status = status.HTTP_400_BAD_REQUEST)
 
         except Exception as e:
             print(e)

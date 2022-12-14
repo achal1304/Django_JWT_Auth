@@ -22,7 +22,7 @@ from rest_framework_simplejwt.views import (
 from .views import TodoApiView, deleteTodo, TimingTodoView
 
 urlpatterns = [
-    path('todos/', TodoApiView.as_view()),
+    path('todos/', TodoApiView.as_view(), name = 'get_post_put_todos'),
     path('timingTodo/', TimingTodoView.as_view()),
     path('todos/<uuid:uid>/', deleteTodo),
     path('api/token/', TokenObtainPairView.as_view(),
